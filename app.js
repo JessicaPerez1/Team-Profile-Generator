@@ -3,6 +3,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
+const util = require("util");
 //jest require dependency added
 const jest = require("jest");
 const path = require("path");
@@ -14,6 +15,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 // READFILE ASYNC DEPENDENCY
 // const readFileAsync = jest.promisify(fs.readFile);
+// const writeFileAsync = util.promisify(fs.writeFile);
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
@@ -22,6 +24,28 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 //FUNCTIONS
 //GET USER INPUT ====== inquirer prompt
+const teamMembers = [];
+//HELPER FUNCTION newTeamMember
+function newTeamMember(reply) {
+  return inquirer
+    .prompt([
+      {
+        type: "confirm",
+        message: "Do you want to add another team member?",
+        name: "continue",
+      },
+    ])
+    .then(function (userConfirm) {
+      if (userConfirm.continue === true) {
+        userPrompt();
+        //render HTML function here
+      }
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+}
+
 function userPrompt(response) {
   return inquirer
     .prompt([
@@ -33,59 +57,118 @@ function userPrompt(response) {
       },
     ])
     .then(function (reply) {
-      if (reply.role === "Manager" || "Engineer" || "Intern") {
-        inquirer.prompt([
-          {
-            type: "input",
-            message: "What is the name of the team member?",
-            name: "name",
-          },
-          {
-            type: "input",
-            message: "What is the id of the team member?",
-            name: "id",
-          },
-          {
-            type: "input",
-            message: "What is the email of the team member?",
-            name: "email",
-          },
-        ]);
-      }
       if (reply.role === "Manager") {
-        inquirer.prompt([
-          {
-            type: "input",
-            message: "What is the office number of the manager?",
-            name: "office",
-          },
-        ]);
-      }
-      if (reply.role === "Engineer") {
-        inquirer.prompt([
-          {
-            type: "input",
-            message: "What is the Github user name of the engineer?",
-            name: "github",
-          },
-        ]);
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is the name of the team member?",
+              name: "name",
+            },
+            {
+              type: "input",
+              message: "What is the id of the team member?",
+              name: "id",
+            },
+            {
+              type: "input",
+              message: "What is the email of the team member?",
+              name: "email",
+            },
+            {
+              type: "input",
+              message: "What is the office number of the manager?",
+              name: "officeNumber",
+            },
+          ])
+          .then(function (managerReply) {
+            let newManager = new Manager(
+              managerReply.name,
+              managerReply.id,
+              managerReply.email,
+              managerReply.officeNumber
+            );
+            teamMembers.push(newManager);
+            newTeamMember();
+          });
+      } else if (reply.role === "Engineer") {
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is the name of the team member?",
+              name: "name",
+            },
+            {
+              type: "input",
+              message: "What is the id of the team member?",
+              name: "id",
+            },
+            {
+              type: "input",
+              message: "What is the email of the team member?",
+              name: "email",
+            },
+            {
+              type: "input",
+              message: "What is the Github username?",
+              name: "github",
+            },
+          ])
+          .then(function (engineerReply) {
+            let newEngineer = new Engineer(
+              engineerReply.name,
+              engineerReply.id,
+              engineerReply.email,
+              engineerReply.github
+            );
+            teamMembers.push(newEngineer);
+            newTeamMember();
+          });
       } else if (reply.role === "Intern") {
-        inquirer.prompt([
-          {
-            type: "input",
-            message: "What is the school attended by the intern?",
-            name: "school",
-          },
-        ]);
+        inquirer
+          .prompt([
+            {
+              type: "input",
+              message: "What is the name of the team member?",
+              name: "name",
+            },
+            {
+              type: "input",
+              message: "What is the id of the team member?",
+              name: "id",
+            },
+            {
+              type: "input",
+              message: "What is the email of the team member?",
+              name: "email",
+            },
+            {
+              type: "input",
+              message: "Which school did you attend?",
+              name: "school",
+            },
+          ])
+          .then(function (internReply) {
+            let newIntern = new Intern(
+              internReply.name,
+              internReply.id,
+              internReply.email,
+              internReply.school
+            );
+            teamMembers.push(newIntern);
+            newTeamMember();
+          });
       }
     });
 }
-async function init() {
-  const response = await inquirer.prompt(questions);
-  console.log(response);
-  //if answer to first question is "Manager" then go to questions Manager
-}
-init();
+userPrompt();
+// async function init() {
+//   const response = await inquirer.prompt(questions);
+// console.log(response);
+//if answer to first question is "Manager" then go to questions Manager
+// }
+// init();
 // let newUserData = generateHTML(response);
 // writeFileAsync("user-data.html", newUserData);
 
