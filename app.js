@@ -175,7 +175,7 @@ function combineFiles() {
   try {
     writeFileAsync(outputPath, teamRender);
   } catch (err) {
-    console.log;
+    console.log(err);
   }
 }
 
