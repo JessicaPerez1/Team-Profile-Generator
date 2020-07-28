@@ -15,6 +15,8 @@ The application will create an HTML file that displays a formatted team roster b
 
 ## Application-screenshots
 
+![team generator screenshots]()
+
 ## Installation
 
 - Make sure to `npm install`, from the `package.json` file terminal.
@@ -28,9 +30,9 @@ The application will create an HTML file that displays a formatted team roster b
 
 ### Deployed-app-and-Demo-link
 
-- [Github repository:]()
 - [Deployed app:]()
-- [Demo video:]()
+- [Demo video:](https://drive.google.com/file/d/1VzMxjN4UWb6FZNhDhPYdjtQfw4z7lIOV/view)
+- [Github repository:](https://github.com/JessicaPerez1/Team-Profile-Generator.git)
 
 ### Questions
 
