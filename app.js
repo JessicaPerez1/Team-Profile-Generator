@@ -14,8 +14,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 // READFILE ASYNC DEPENDENCY
-// const readFileAsync = jest.promisify(fs.readFile);
-// const writeFileAsync = util.promisify(fs.writeFile);
+const readFileAsync = util.promisify(fs.readFile);
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
@@ -39,6 +39,9 @@ function newTeamMember(reply) {
       if (userConfirm.continue === true) {
         userPrompt();
         //render HTML function here
+      } else {
+        console.log(teamMembers);
+        combineFiles();
       }
     })
     .catch(function (err) {
@@ -163,16 +166,21 @@ function userPrompt(response) {
     });
 }
 userPrompt();
-// async function init() {
-//   const response = await inquirer.prompt(questions);
-// console.log(response);
-//if answer to first question is "Manager" then go to questions Manager
-// }
-// init();
+
+//FUNCTION TO READ ALL FILES AND WRITE TO RENDER HTML
+
+function combineFiles() {
+  let teamRender = render(teamMembers);
+  //read each employee type file
+  try {
+    writeFileAsync(outputPath, teamRender);
+  } catch (err) {
+    console.log;
+  }
+}
+
 // let newUserData = generateHTML(response);
 // writeFileAsync("user-data.html", newUserData);
-
-// and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
