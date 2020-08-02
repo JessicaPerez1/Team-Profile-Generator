@@ -10,12 +10,12 @@ The application will create an HTML file that displays a formatted team roster b
 1. [Application screenshots](#Application-screenshots)
 2. [Installation](#Installation)
 3. [Usage](#Usage)
-4. [Deployed app and Demo link](#Deployed-app-and-Demo-link)
+4. [Demo link and Github repository](#Demo-link-and-Github-repository)
 5. [Questions](#Questions)
 
 ## Application-screenshots
 
-![team generator screenshots]()
+![team generator screenshots](team-render-screenshot.png)
 
 ## Installation
 
@@ -28,11 +28,12 @@ The application will create an HTML file that displays a formatted team roster b
 - The user can input any number of team members, and information such as email, id, and specific information based on the employee's role.
 - Once completed, a new `team.html` file is generated in the `output` directory, displaying all team's information in a nice, formatted file.
 
-### Deployed-app-and-Demo-link
+### Demo-link-and-Github-repository
 
-- [Deployed app:]()
-- [Demo video:](https://drive.google.com/file/d/1VzMxjN4UWb6FZNhDhPYdjtQfw4z7lIOV/view)
-- [Github repository:](https://github.com/JessicaPerez1/Team-Profile-Generator.git)
+- Demo video:
+  (https://drive.google.com/file/d/1VzMxjN4UWb6FZNhDhPYdjtQfw4z7lIOV/view)
+- Github repository:
+  ![Github repository](https://github.com/JessicaPerez1/Team-Profile-Generator.git)
 
 ### Questions
 
