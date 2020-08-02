@@ -7,15 +7,15 @@ The application will create an HTML file that displays a formatted team roster b
 
 ## Table of Contents
 
-1. [Application screenshots](#Application-screenshots)
+1. [Application screenshot](#Application-screenshot)
 2. [Installation](#Installation)
 3. [Usage](#Usage)
 4. [Demo link and Github repository](#Demo-link-and-Github-repository)
 5. [Questions](#Questions)
 
-## Application-screenshots
+## Application-screenshot
 
-![team generator screenshots](team-render-screenshot.png)
+![team generator screenshot](team-render-screenshot.png)
 
 ## Installation
 
